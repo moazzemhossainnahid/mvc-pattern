@@ -1,6 +1,7 @@
 const express = require('express');
 // const { getAllProducts, SaveAProducts } = require('../../Controllers/products.controllers');
 const ToolsController = require('../../Controllers/products.controllers');
+const ViewCount = require('../../Middleware/ViewCount');
 
 const router = express.Router();
 
@@ -65,6 +66,8 @@ router.route("/")
      */
 
     .post(ToolsController.SaveAProducts)
+
+router.route("/:id").get(ViewCount, ToolsController.getProductDetails);
 
 
 module.exports = router;

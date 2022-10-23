@@ -4,6 +4,7 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const dbConnect = require('./Utils/dbConnect');
 const productsRoutes = require('./Routes/v1/tools.route');
+const ViewCount = require('./Middleware/ViewCount');
 require('dotenv').config()
 const app = express();
 const port = process.env.PORT || 5000;
@@ -14,7 +15,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 app.use(express.json());
 app.use(cors());
 
-
+// app.use(ViewCount);
 
 // Get JWT Token
 

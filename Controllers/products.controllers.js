@@ -13,7 +13,7 @@ module.exports = {
 */
 
 module.exports.getAllProducts = (req, res, next) => {
-    const {ip, query, params, body, headers} = req;
+    const { ip, query, params, body, headers } = req;
     console.log(ip, query, params, body, headers);
     // res.send("Got It");
     // res.download(__dirname + "/products.controllers.js");
@@ -26,3 +26,7 @@ module.exports.getAllProducts = (req, res, next) => {
 module.exports.SaveAProducts = (req, res) => {
     res.send("Product Added");
 };
+
+module.exports.getProductDetails = async (req, res, next) => {
+    res.send("Get Tools Details");
+}
