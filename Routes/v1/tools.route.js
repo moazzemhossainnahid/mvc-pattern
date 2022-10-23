@@ -10,17 +10,14 @@ const router = express.Router();
 // })
 
 
-router.get("/",)
+// router.get("/:id", (req, res) => {
+//     res.send("Tools Found by ID");
+// })
 
 
-router.get("/:id", (req, res) => {
-    res.send("Tools Found by ID");
-})
-
-
-router.post("/products", (req, res) => {
-    res.send("Tool Added");
-})
+// router.post("/products", (req, res) => {
+//     res.send("Tool Added");
+// })
 
 
 // altarnative
