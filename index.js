@@ -20,13 +20,13 @@ app.use(cors());
 
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    if(!authHeader){
-        return res.status(401).send({message: 'UnAuthorized Aceess'})
+    if (!authHeader) {
+        return res.status(401).send({ message: 'UnAuthorized Aceess' })
     }
     const token = authHeader.split(' ')[1];
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-        if(err){
-            return res.status(403).send({message: 'Forbidden Access'})
+        if (err) {
+            return res.status(403).send({ message: 'Forbidden Access' })
         }
         // console.log('decoded', decoded);
         req.decoded = decoded;
@@ -35,7 +35,7 @@ const verifyToken = (req, res, next) => {
     next();
 }
 
-  
+
 
 
 // const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.hmmg8.mongodb.net/?retryWrites=true&w=majority`;
@@ -45,8 +45,8 @@ dbConnect();
 
 app.use("/products", productsRoutes);
 
-const run = async() => {
-    try{
+const run = async () => {
+    try {
         await client.connect();
         const productsCollection = client.db("PCHubBD").collection("Products");
         const usersCollection = client.db("PCHubBD").collection("Users");
@@ -80,7 +80,7 @@ const run = async() => {
         //     res.send(result)
         // })
 
-                
+
         // // update product
         // app.put('/updateproduct/:id', verifyToken, async(req, res)=> {
         //     const id = req.params.id;
@@ -157,7 +157,7 @@ const run = async() => {
         // //     res.send(updatedDoc);
         // // })
 
- 
+
         // // Post Admin Role
         // app.put('/user/admin/:email', verifyToken, async(req, res)=> {
         //     const email = req.params.email;
@@ -176,8 +176,8 @@ const run = async() => {
 
         // })
 
-                   
-        
+
+
         // // Remove Admin
         // app.put('/user/removeadmin/:email', verifyToken, async(req, res)=> {
         //     const email = req.params.email;
@@ -190,7 +190,7 @@ const run = async() => {
 
         // })
 
- 
+
         // // get admin
         // app.get('/user/admin/:email', verifyToken, async(req, res) => {
         //     const email = req.params.email;
@@ -214,15 +214,15 @@ const run = async() => {
         //     res.send({result, accessToken: token});
 
         // })
- 
- 
+
+
         // // get users
         // app.get('/users', verifyToken, async(req, res) => {
         //     const users = await usersCollection.find().toArray();
         //     res.send(users);
         // })
 
-        
+
         // // delete user
         // app.delete('/removeuser/:email', verifyToken, async(req, res) => {
         //     const email = req.params.email;
@@ -244,7 +244,7 @@ const run = async() => {
         //     const result = await profilesCollection.updateOne(filter, updatedDoc, options);
         //     res.send(result);
         // })
-  
+
         // // get profile by email
         // app.get('/profile/:email', async(req, res) => {
         //     const email = req.params.email;
@@ -296,7 +296,7 @@ const run = async() => {
         //     res.send(result);
         // })
 
- 
+
         // // get payment intent
         // app.post('/create-payment-intent', verifyToken, async(req, res) => {
         //     const {orderValue} = req.body;
@@ -310,7 +310,7 @@ const run = async() => {
         //     res.send({clientSecret: paymentIntent.client_secret})
         // })
 
-    }finally{
+    } finally {
 
     }
 }
@@ -320,6 +320,10 @@ run().catch(console.dir);
 app.get('/', (req, res) => {
     res.send("Running PC Hub BD Server");
 });
+
+app.all("*", (req, res) => {
+    res.send("No Routes Found");
+})
 
 app.listen(port, () => {
     console.log("Listen to Port", port);
