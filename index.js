@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const dbConnect = require('./Utils/dbConnect');
-const productsRoutes = require('./Routes/tools.route');
+const productsRoutes = require('./Routes/v1/tools.route');
 require('dotenv').config()
 const app = express();
 const port = process.env.PORT || 5000;
@@ -43,7 +43,7 @@ const verifyToken = (req, res, next) => {
 
 dbConnect();
 
-app.use("/products", productsRoutes);
+app.use("/api/v1/products", productsRoutes);
 
 const run = async () => {
     try {
