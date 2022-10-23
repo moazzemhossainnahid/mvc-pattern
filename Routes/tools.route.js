@@ -18,4 +18,14 @@ router.post("/products", (req, res) => {
 })
 
 
+// altarnative
+
+
+router.route("/").get((req, res) => {
+    res.send("Tools Found");
+}).post((req, res) => {
+    res.send("Tool Added");
+})
+
+
 module.exports = router;
